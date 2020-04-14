@@ -1,0 +1,65 @@
+<!--
+  Generated template for the TeacherAttendancePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>teacher-attendance</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="teacherAttendance" (ngSubmit)="markAttendance(teacherAttendance)">
+    <ion-list>
+      <!-- <ion-item>
+        <ion-label floating>Full Name</ion-label>
+        <ion-input type="text" formControlName="fullName"></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YYYY" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Start Time</ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="startTime"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>End Time</ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [min]="getMinEndDate" formControlName="endTime" (ionChange)="viewValue();"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Department</ion-label>
+        <ion-input type="text" formControlName="department"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Select Batch Year</ion-label>
+        <ion-select formControlName="batchYear" (ionChange)="onSelectChange($event)">
+          <ion-option value="{{list.value}}" *ngFor="let list of courseType; let i = index"> {{list.name}} </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Select Subject</ion-label>
+        <ion-select formControlName="subject" [disabled]="teacherAttendance.get('batchYear').value == '' ">
+          <ion-option value="{{list.value}}" *ngFor="let list of subjectList; let i = index"> {{list.name}} </ion-option>
+        </ion-select>
+      </ion-item>
+      <div class="text-center">
+        <button ion-button round type="submit" [disabled]="teacherAttendance.invalid || disableBtn">Start Lecture</button>
+        <!-- <button ion-button round type="button" (click)="viewAttendance();">View Attendance</button> -->
+      </div>
+    </ion-list>
+  </form>
+
+  <div class="text-center" *ngIf="viewCode">
+    <button ion-button round type="button" (click)="viewAttendance();">View Attendance</button>
+  </div>
+  <div class="view-code" *ngIf="viewCode">
+    <p class="note"></p>
+    <span>{{viewCode}}</span>
+  </div>
+</ion-content>

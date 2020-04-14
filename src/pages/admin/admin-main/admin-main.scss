@@ -1,0 +1,19 @@
+page-admin-main {
+    .scroll-content {
+        top: 5%;
+    }
+    .card-content {
+        // background-image: linear-gradient(to right, #cc2b5e 0%, #753a88 100%);
+        background-image: linear-gradient(to right, #2193b0 0%, #6dd5ed 100%);
+        padding: 0;
+        border-radius: 16px;
+        box-shadow: 0px 3px 5px #777777;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        color: #fff;
+        text-align: center;
+        > div {
+            padding: 6rem 3rem;
+        }
+    }
+}

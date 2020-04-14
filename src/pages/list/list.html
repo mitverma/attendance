@@ -1,23 +1,36 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <!-- <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
+    </button> -->
+    <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+    <form [formGroup]="profileDetailForm" (ngSubmit)="updateProfileDetail(profileDetailForm);">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Created Date</ion-label>
+          <ion-input type="tel" formControlName="createdAt"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Full Name</ion-label>
+          <ion-input type="tel" formControlName="fullName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Mobile No</ion-label>
+          <ion-input type="tel" formControlName="mobileNo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Department</ion-label>
+          <ion-input type="tel" formControlName="department"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Address</ion-label>
+          <ion-input type="tel" formControlName="address"></ion-input>
+        </ion-item>
+        <button ion-button round type="submit">Submit</button>
+      </ion-list>
+    </form>
 </ion-content>

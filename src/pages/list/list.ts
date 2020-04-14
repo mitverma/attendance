@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserProfileProvider } from '../../providers/user-profile/user-profile';
 
 @Component({
   selector: 'page-list',
@@ -9,8 +11,19 @@ export class ListPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  profileDetailForm: FormGroup;
+  userProfileData: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProfile: UserProfileProvider) {
+     this.profileDetailForm = new FormGroup({
+       createdAt: new FormControl(null),
+       fullName: new FormControl(null),
+       mobileNo: new FormControl(null),
+       department: new FormControl(null),
+       address: new FormControl(null),
+     })
+
+
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -33,5 +46,19 @@ export class ListPage {
     this.navCtrl.push(ListPage, {
       item: item
     });
+  }
+
+  ionViewDidLoad(){
+    this.userProfileData = this.userProfile.getUserProfile();
+    
+    if(this.userProfileData){
+      this.profileDetailForm.patchValue({
+        createdAt:this.userProfileData['createdDate'],
+        fullName: this.userProfileData['fullName'],
+        mobileNo:this.userProfileData['mobileNo'],
+        department:this.userProfileData['department'],
+        address:this.userProfileData['address'],
+      })
+    }
   }
 }

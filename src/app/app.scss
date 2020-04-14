@@ -14,3 +14,41 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.button-md {
+    // background-image: linear-gradient(to right, #cc2b5e 0%, #753a88 100%);
+    background-image: linear-gradient(to right, #2193b0 0%, #6dd5ed 100%);
+}
+.button-round-md {
+    padding: 2.3rem 2.6rem;
+}
+.text-center {
+    text-align: center;
+}
+
+form {
+    .item-block {
+        margin-bottom: 20px;
+    }
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #000;
+    }
+}
+
+ion-toast.toast-md {
+    width: 80vw;
+    left: 50%;
+    transform: translateX(-50%);
+     .toast-wrapper.toast-middle {
+        //  background-image: linear-gradient(to right, #cc2b5e 0%, #753a88 100%);
+         background-image: linear-gradient(to right, #2193b0 0%, #6dd5ed 100%);
+         .toast-button {
+             background: none;
+         }
+     }
+}
+
+// .scroll-content {
+//     background-color: #c2eaf3;
+// }
